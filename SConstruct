@@ -1,8 +1,16 @@
+import os
+
 ##########################
 ### Flags and Paths
 ##########################
 
 cFlags    = "-Wall"
+linkFlags = ""
+
+if os.uname()[0] == 'Darwin':
+    cFlags    += " -stdlib=libstdc++"
+    linkFlags += " -stdlib=libstdc++"
+
 
 ##########################
 ### Set up environment
@@ -10,6 +18,8 @@ cFlags    = "-Wall"
 
 env = Environment()
 env.Append(CCFLAGS=cFlags)
+env.Append(LINKFLAGS=linkFlags)
+
 
 ##########################
 ### Compile!
