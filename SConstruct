@@ -1,4 +1,5 @@
 import os
+import sys
 
 
 AddOption('--optimize',
@@ -30,6 +31,12 @@ if os.uname()[0] == 'Darwin':
 env = Environment()
 env.Append(CCFLAGS=cFlags)
 env.Append(LINKFLAGS=linkFlags)
+
+sys.path.append(Dir('#').abspath + "/util")
+
+from colorizer import colorizer
+col = colorizer()
+col.colorize(env)
 
 
 ##########################
