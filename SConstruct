@@ -26,5 +26,11 @@ env.Append(LINKFLAGS=linkFlags)
 ##########################
 
 files = ['src/main.cpp']
+cppPath = ['/opt/local/include']
+libPath = ['/opt/local/lib']
+libsAll = ['ncurses']
 
-hw = env.Program('#hello', files)
+hw = env.Program('#hello', files,
+                  LIBS=libsAll,
+                  LIBPATH=libPath,
+                  CPPPATH=cppPath)
