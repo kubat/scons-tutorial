@@ -1,10 +1,21 @@
 import os
 
+
+AddOption('--optimize',
+          dest='optimize',
+          action='store_true',
+          help='Run with optimization flags.')
+
+
+if GetOption('optimize'):
+    print "Compiling with optimization on. (No debug flag)"
+
+
 ##########################
 ### Flags and Paths
 ##########################
 
-cFlags    = "-Wall"
+cFlags    = ("-O1 " if GetOption('optimize') else "-g ") + " -Wall"
 linkFlags = ""
 
 if os.uname()[0] == 'Darwin':
